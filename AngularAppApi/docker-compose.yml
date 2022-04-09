@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  angular-app-api:
+    image: angular-app-api
+    ports: 
+      - 8000:80
+    environment:
+      DB_PASSWORD: 4I0&4W#I4Wrf
+    networks:
+      - backend
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - 1433:1433
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: 4I0&4W#I4Wrf
+    networks:
+      - backend
+networks:
+  backend:
+    
