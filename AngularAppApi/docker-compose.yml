@@ -1,13 +1,24 @@
 version: '3.4'
 
 services:
+  angularapp-front-end:
+    image: tauqeerdocker/my
+    ports:
+      - 4200:4200
+    networks:
+      - frontend
   angular-app-api:
-    image: angular-app-api
+    image: tauqeerdocker/angular-app-api
     ports: 
       - 8000:80
     environment:
       DB_PASSWORD: 4I0&4W#I4Wrf
+    volumes: 
+      - /var/opt/mssql/backups
+      - /var/opt/sqlserver
+      - /var/opt/mssql
     networks:
+      - frontend
       - backend
   mssql:
     image: mcr.microsoft.com/mssql/server:2019-latest
@@ -19,5 +30,6 @@ services:
     networks:
       - backend
 networks:
+  frontend:
   backend:
     
